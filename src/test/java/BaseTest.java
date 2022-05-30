@@ -2,7 +2,6 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Condition.text;
@@ -24,21 +23,28 @@ public class BaseTest {
     String userNumber = "8954966770";
     String subject1 = "Economics";
     String subject2 = "Math";
+    String currentAddress = "Moskovskaja 22";
+    String month = "May";
+    String year = "1978";
+    String state = "Haryana";
+    String city = "Karnal";
+
 
     open("/automation-practice-form");
     executeJavaScript("$('footer').remove()");
     executeJavaScript("$('#fixedban').remove()");
 
-    $("[id=firstName]").setValue(firstName);
-    $("[id=lastName]").setValue(lastName);
-    $("[id=userEmail]").setValue(userEmal);
+    $("#firstName").setValue(firstName);
+    $("#lastName").setValue(lastName);
+    $("#userEmail").setValue(userEmal);
     $(byText("Male")).click();
-    $("[id=userNumber]").setValue(userNumber);
+    $("#userNumber").setValue(userNumber);
 
     $("#dateOfBirthInput").click();
-    $(".react-datepicker__month-select").selectOption("May");
-    $(".react-datepicker__year-select").selectOption("1978");
+    $(".react-datepicker__month-select").selectOption(month);
+    $(".react-datepicker__year-select").selectOption(year);
     $(byText("2")).click();
+
 
     $(byText("Sports")).click();
     $("#subjectsInput").sendKeys(subject1);
@@ -46,25 +52,25 @@ public class BaseTest {
     $("#subjectsInput").sendKeys(subject2);
     $("#subjectsInput").pressEnter();
 
-    $("#uploadPicture").uploadFile(new File("src\\test\\resources\\avatar.png"));
-    $("#currentAddress").setValue("Moskovskaja 22");
+    $("#uploadPicture").uploadFromClasspath("avatar.png");
+    $("#currentAddress").setValue(currentAddress);
 
-    $("#react-select-3-input").setValue("Haryana").pressEnter();
-    $("#react-select-4-input").setValue("Karnal").pressEnter();
+    $("#react-select-3-input").setValue(state).pressEnter();
+    $("#react-select-4-input").setValue(city).pressEnter();
 
     $("[id=submit]").click();
 
     $(".modal-body").shouldHave(
-            text("Ivan Ivanov"),
-            text("IvanIvanov@gmail.com"),
+            text(firstName), text(lastName),
+            text(userEmal),
             text("Male"),
-            text("8954966770"),
-            text("02 May,1978"),
-            text("Economics, Maths"),
+            text(userNumber),
+            text("02"), text(month), text(year),
+            text(subject1), text(subject2),
             text("Sports"),
             text("avatar.png"),
-            text("Moskovskaja 22"),
-            text("Haryana Karnal")
+            text(currentAddress),
+            text(state), text(city)
     );
   }
 }
