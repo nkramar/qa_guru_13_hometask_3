@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 public class RegistrationFormWithPageObjectsTests extends BaseTest {
   @Test
-  void practiceformTest() {
+  void practiceFormTest() {
 
     registrationFormPage
             .openPage()

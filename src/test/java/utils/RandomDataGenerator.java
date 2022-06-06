@@ -6,7 +6,8 @@ public class RandomDataGenerator {
   public static String randomGender() {
     String[] gender = new String[]{"Male", "Female", "Other"};
     Random random = new Random();
-    return gender[random.nextInt(gender.length)];
+    String randomGender = gender[random.nextInt(gender.length)];
+    return randomGender;
   }
 
   public static String randomMonth() {
@@ -24,10 +25,11 @@ public class RandomDataGenerator {
     String randomSubjects = subjects[random.nextInt(subjects.length)];
     return randomSubjects;
   }
+
   public static String randomHobbies() {
     String[] hobbies = {"Sports", "Reading", "Music"};
     Random random = new Random();
-    String randomSubjects = hobbies[random.nextInt(hobbies.length)];
-    return randomSubjects;
+    String randomHobbies = hobbies[random.nextInt(hobbies.length)];
+    return randomHobbies;
   }
 }
