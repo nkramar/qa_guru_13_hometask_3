@@ -15,7 +15,7 @@ public class SystemPropertiesTest {
   void someTest2() {
 
     String browser = System.getProperty("browser");
-    System.out.println(browser); // safari
+    System.out.println(browser);
   }
 
   @Test
@@ -48,24 +48,7 @@ public class SystemPropertiesTest {
     System.out.println(version); //
     System.out.println(browserSize); //
 
-        /*
-            From idea
-                chrome
-                101
-                1920x1080
-            gradle clean properties_test6
-                chrome
-                101
-                1920x1080
-            gradle clean properties_test6 -Dbrowser=opera
-                opera
-                101
-                1920x1080
-            gradle clean properties_test6 -Dbrowser=opera -Dversion=102
-                opera
-                102
-                1920x1080
-         */
+
   }
 
   @Test
@@ -73,7 +56,5 @@ public class SystemPropertiesTest {
   void someTest7() {
     System.out.println("Hello " + System.getProperty("anyText"));
 
-    // gradle clean hello_test -DanyText=world!
-    //     Hello world!
   }
 }

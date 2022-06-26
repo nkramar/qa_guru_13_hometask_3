@@ -1,10 +1,12 @@
 package tests;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 
 public class RegistrationFormWithPageObjectsTests extends BaseTest {
+  @Tag("demoqa_tests")
   @DisplayName("Заполнение формы регистрации студента")
   @Test
   void practiceFormTest() {
