@@ -10,12 +10,11 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import pages.RegistrationFormPage;
-import pages.components.ResultsTableComponent;
 import config.CredentialsConfig;
 
 public class BaseTest {
   RegistrationFormPage registrationFormPage = new RegistrationFormPage();
-  ResultsTableComponent resultsTableComponent = new ResultsTableComponent();
+
   TestData testData = new TestData();
 
   @BeforeAll
@@ -30,13 +29,15 @@ public class BaseTest {
     Configuration.browserCapabilities = capabilities;
     Configuration.baseUrl = "https://demoqa.com";
     Configuration.browserSize = "1920x1080";
-    if (config.remoteURL() != null) {
-      setupRemoteTestExecution(config.remoteURL(), config.login(), config.password());
+    if(config.remote()) {
+      String login = config.selenideLogin();
+      String password = config.selenidePassword();
+      String url = config.selenideUrl();
+      Configuration.remote = String.format("https://%s:%s@%s/wd/hub/", login, password, url);
     }
+
   }
-  private static void setupRemoteTestExecution(String remoteURL, String login, String password) {
-    Configuration.remote = String.format(remoteURL, login, password);
-  }
+
 
   @AfterEach
   void addAttachments() {

@@ -5,10 +5,17 @@ import org.aeonbits.owner.Config;
 
 @Config.Sources("classpath:config/credentials.properties")
 public interface CredentialsConfig extends Config {
-  String login();
 
-  String password();
+  @Key("remote")
+  Boolean remote();
 
-  String remoteURL();
+  @Key("selenide.url")
+  String selenideUrl();
+
+  @Key("selenide.login")
+  String selenideLogin();
+
+  @Key("selenide.password")
+  String selenidePassword();
 
 }
