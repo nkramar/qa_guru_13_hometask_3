@@ -29,12 +29,12 @@ public class BaseTest {
     Configuration.browserCapabilities = capabilities;
     Configuration.baseUrl = "https://demoqa.com";
     Configuration.browserSize = "1920x1080";
-    if(config.remote()) {
+
       String login = config.selenideLogin();
       String password = config.selenidePassword();
       String url = config.selenideUrl();
       Configuration.remote = String.format("https://%s:%s@%s/wd/hub/", login, password, url);
-    }
+
 
   }
 
