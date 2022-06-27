@@ -7,7 +7,7 @@ import org.aeonbits.owner.Config;
 public interface CredentialsConfig extends Config {
 
 
-  String url();
+  String baseUrl();
 
 
   String login();
