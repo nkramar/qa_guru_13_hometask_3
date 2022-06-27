@@ -14,26 +14,28 @@ import config.CredentialsConfig;
 
 public class BaseTest {
   RegistrationFormPage registrationFormPage = new RegistrationFormPage();
-
+  public static CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
   TestData testData = new TestData();
 
   @BeforeAll
   static void beforeAll() {
-    final CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
+
     SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
     DesiredCapabilities capabilities = new DesiredCapabilities();
     capabilities.setCapability("enableVNC", true);
     capabilities.setCapability("enableVideo", true);
-
-    Configuration.browserCapabilities = capabilities;
+    Configuration.browser = System.getProperty("browser", "chrome");
+    Configuration.browserVersion = System.getProperty("browserVersion", "100");
+    Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
     Configuration.baseUrl = "https://demoqa.com";
-    Configuration.browserSize = "1920x1080";
+    Configuration.browserCapabilities = capabilities;
 
-      String login = config.selenideLogin();
-      String password = config.selenidePassword();
-      String url = config.selenideUrl();
-      Configuration.remote = String.format("https://%s:%s@%s/wd/hub/", login, password, url);
+
+      String login = config.login();
+      String password = config.password();
+      String url = config.url();
+      Configuration.remote = String.format("https://%s:%s@%s", login, password, url);
 
 
   }
