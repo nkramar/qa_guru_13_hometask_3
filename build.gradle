@@ -79,3 +79,8 @@ task owner_tests(type: Test) {
         includeTags "owner_tests"
     }
 }
+task simple_tests(type: Test) {
+    useJUnitPlatform{
+        includeTags "simple_tests"
+    }
+}
